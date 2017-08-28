@@ -1,11 +1,32 @@
 body {
-  background-color: #f9e6ff;
+	background-color: #333333;
+font-family: 'Lato', sans-serif;
 }
 
-.onUsersInfo {
-	color: green;
+.fcc {
+	background-color: #876798;
+	color: #ebebec;
+	height: 300px;
+	padding-top: 30px;
+	padding-left: 10%;
+}
+h1 {
+	font-family: 'Press Start 2P', cursive;
 }
 
-.offUsersInfo {
-color: red;
+.styleresults {
+	background-color: #202020;
+	color: #aaaaab;
+	padding: 20px;
+}
+
+.buttonbar {
+	background-color: #440567;
+	padding-top:5px;
+	padding-bottom:5px;
+}
+
+.btn {
+	color: #ebebec;
+	font-family: 'Press Start 2P';
 }
