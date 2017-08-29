@@ -1,17 +1,50 @@
-$(document).ready(function()
-{
-	$("#on").click(function()
-	{
-		$("#results").html("<p>This will show the twitchers who are currently streaming.</p>");
-	})
+$(document).ready(function() {
+	var userList = [
+		"ESL_SC2",
+		"OgamingSC2",
+		"cretetion",
+		"freecodecamp",
+		"storbeck",
+		"habathcx",
+		"RobotCaleb",
+		"noobs2ninjas"
+	];
 
-	$("#off").click(function()
+	function getDisplayName (username)
 	{
-		$("#results").html("<p>This will show the twitchers who are offline.</p>");
-	})
+		$.ajax(
+			{
+		type: "GET",
+		dataType: "jsonp",
+		url: "https://wind-bow.gomix.me/twitch-api/users/" + username + "?callback=?",
+		success: function(data)
+				{
+			var displayName = data.display_name;
+			var bio = data.bio;
+			$('#' + username).append('<p>'+ bio + '</p>');
+				}
+			});
+	}
 
-	$("#all").click(function()
+	function getStreamStatus (username)
 	{
-		$("#results").html("<p>All the channels will be displayed here.</p>");
-	})
-})
+
+	}
+
+	function getStreamdetails (username)
+	{
+
+	}
+
+	function displayApiInfo ()
+	{
+
+	}
+
+	$.each(userList, function (username)
+	{
+		username = this;
+		$("#results").append('<div id="' + username + '">hello '+ username + '!</div>');
+		getDisplayName (username);
+	});
+}); //end of (kara)doc, Merci, de rien, au revoir messieurs-dames. (Perceval forever)
