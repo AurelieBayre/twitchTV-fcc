@@ -3,17 +3,22 @@ body {
 font-family: 'Lato', sans-serif;
 }
 
-.fcc {
+.head {
 	background-color: #876798;
 	color: #ebebec;
 	height: 300px;
-	padding-top: 30px;
+	padding-top: 80px;
 	padding-left: 10%;
 }
 h1 {
 	font-family: 'Press Start 2P', cursive;
+	font-size: 60px;
 }
 
+h2 {
+	padding-top: 20px;
+	padding-left: 15%;
+}
 .styleresults {
 	background-color: #202020;
 	color: #aaaaab;
@@ -29,4 +34,18 @@ h1 {
 .btn {
 	color: #ebebec;
 	font-family: 'Press Start 2P';
+}
+
+a:link {
+	color: #9539c6;
+
+}
+a:visited {
+	color: #876798;
+}
+a: hover {
+	#ebebec
+}
+a:active {
+
 }
