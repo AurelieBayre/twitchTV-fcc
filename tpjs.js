@@ -61,7 +61,7 @@ $(document).ready(function()
 			success: function(data3)
 			{
 				var channelUrl = data3.url;
-				console.log(channelUrl);
+				$('#bio' + username).wrap('<a href="'+ channelUrl +'" target="_blank" class="bioLink"></a>');
 				$('#stream' + username).wrap('<a href="'+ channelUrl +'" target="_blank"></a>');
 			}
 		});
@@ -85,10 +85,12 @@ $(document).ready(function()
 						{
 							var currentlyStreaming = data2.stream.game; // this had to be placed here and not before the if...
 							$('#stream' + username).html('Currently streaming: '+ currentlyStreaming + '');
+							$('#' + username).addClass('online');
 						}
 					else
 						{
 							$('#stream' + username).html('Offline!');
+							$('#' + username).addClass('offline');
 						}
 					}
 				});
@@ -97,11 +99,12 @@ $(document).ready(function()
 
 
 
-	$.each(userList, function (username)
+
+		$.each(userList, function (username)
 	{
 		username = this;
 $("#results").append(
-	'<div id="' + username + '"><h3 id="name'+ username +'"></h3><p id="bio'+ username + '"></p><p id="stream'+ username+'"></p></div>'
+	'<div id="' + username + '" class= "userdiv"><h3 id="name'+ username +'"></h3><p id="bio'+ username + '"></p><p id="stream'+ username+'"></p></div>'
 );
 		addUrl (username);
 		getDisplayName (username);
@@ -109,6 +112,7 @@ $("#results").append(
 
 
 	});
+
 //});
 	//end of (kara)doc, Merci, de rien, au revoir messieurs-dames. (Perceval forever <3 ) (French TV series joke)
 
@@ -117,16 +121,51 @@ $("#results").append(
 
 	$("#on").click(function()
 	{
-		$("#results").html("<p>This will show the twitchers who are currently streaming.</p>");
-	})
+		$.each(userList, function (username)
+		{
+		username = this;
+		$("#results").append('<div id="' + username + '"><h3 id="name'+ username +'"></h3><p id="bio'+ username + '"></p><p id="stream'+ username+'"></p></div>');
+
+		addUrl (username);
+		getDisplayName (username);
+		getStreamInfo (username);
+		$('.offline').hide();
+		$('.online').show();
+
+
+		});
+
+	});
 
 	$("#off").click(function()
 	{
-		$("#results").html("<p>This will show the twitchers who are offline.</p>");
-	})
+		$.each(userList, function (username)
+		{
+		username = this;
+		$("#results").append('<div id="' + username + '"><h3 id="name'+ username +'"></h3><p id="bio'+ username + '"></p><p id="stream'+ username+'"></p></div>');
+
+		addUrl (username);
+		getDisplayName (username);
+		getStreamInfo (username);
+		$('.online').hide();
+		$('.offline').show();
+		});
+	});
 
 	$("#all").click(function()
 	{
-		$("#results").html("<p>All the channels will be displayed here.</p>");
-	})
-})
+		$.each(userList, function (username)
+	{
+		username = this;
+$("#results").append(
+	'<div id="' + username + '"><h3 id="name'+ username +'"></h3><p id="bio'+ username + '"></p><p id="stream'+ username+'"></p></div>'
+);
+		addUrl (username);
+		getDisplayName (username);
+		getStreamInfo (username);
+		$('.online').show();
+		$('.offline').show();
+
+	});
+	});
+});
