@@ -1,7 +1,5 @@
 $(document).ready(function()
 {
-
-
 	var userList = [
 		"ESL_SC2",
 		"OgamingSC2",
@@ -24,9 +22,9 @@ $(document).ready(function()
 	{
 		$.ajax(
 			{
-		type: "GET",
-		dataType: "jsonp",
-		url: "https://wind-bow.gomix.me/twitch-api/users/" + username + "?callback=?",
+		type: 'GET',
+		dataType: 'jsonp',
+		url: 'https://wind-bow.gomix.me/twitch-api/users/' + username + '?callback=?',
 		success: function(data)
 				{
 			var displayName = data.display_name;
@@ -57,11 +55,11 @@ $(document).ready(function()
 		{
 			type: 'GET',
 			dataType : 'jsonp',
-			url: "https://wind-bow.gomix.me/twitch-api/channels/" + username + "?callback=?",
+			url: 'https://wind-bow.gomix.me/twitch-api/channels/' + username + '?callback=?',
 			success: function(data3)
 			{
 				var channelUrl = data3.url;
-				$('#bio' + username).wrap('<a href="'+ channelUrl +'" target="_blank" class="bioLink"></a>');
+				//$('#bio' + username).wrap('<a href="'+ channelUrl +'" target="_blank" class="bioLink"></a>');
 				$('#stream' + username).wrap('<a href="'+ channelUrl +'" target="_blank"></a>');
 			}
 		});
@@ -72,9 +70,9 @@ $(document).ready(function()
 
 		$.ajax(
 			{
-		type: "GET",
-		dataType: "jsonp",
-		url: "https://wind-bow.gomix.me/twitch-api/streams/" + username + "?callback=?",
+		type: 'GET',
+		dataType: 'jsonp',
+		url: 'https://wind-bow.gomix.me/twitch-api/streams/' + username + '?callback=?',
 
 		success: function(data2)
 				{
@@ -84,7 +82,7 @@ $(document).ready(function()
 					if (displayStatus !== null)
 						{
 							var currentlyStreaming = data2.stream.game; // this had to be placed here and not before the if...
-							$('#stream' + username).html('Currently streaming: '+ currentlyStreaming + '');
+							$('#stream' + username).html('Currently streaming: '+ currentlyStreaming);
 							$('#' + username).addClass('online');
 						}
 					else
@@ -96,53 +94,38 @@ $(document).ready(function()
 				});
 		}
 
-
-
-
-
-		$.each(userList, function (username)
+	$.each(userList, function (username)
 	{
 		username = this;
-$("#results").append(
-	'<div id="' + username + '" class= "userdiv"><h3 id="name'+ username +'"></h3><p id="bio'+ username + '"></p><p id="stream'+ username+'"></p></div>'
-);
+$('#results').append('<div id="' + username + '" class="userdiv"><h3 id="name'+ username +'"></h3><p id="bio'+ username + '"></p><p id="stream'+ username+'"></p></div>');
 		addUrl (username);
 		getDisplayName (username);
 		getStreamInfo (username);
-
-
 	});
-
-//});
-	//end of (kara)doc, Merci, de rien, au revoir messieurs-dames. (Perceval forever <3 ) (French TV series joke)
-
 
 	// sorting options
 
-	$("#on").click(function()
+	$('#on').click(function()
 	{
 		$.each(userList, function (username)
 		{
 		username = this;
-		$("#results").append('<div id="' + username + '"><h3 id="name'+ username +'"></h3><p id="bio'+ username + '"></p><p id="stream'+ username+'"></p></div>');
+		$('#results').append('<div id="' + username + '"><h3 id="name'+ username +'"></h3><p id="bio'+ username + '"></p><p id="stream'+ username+'"></p></div>');
 
 		addUrl (username);
 		getDisplayName (username);
 		getStreamInfo (username);
 		$('.offline').hide();
 		$('.online').show();
-
-
 		});
-
 	});
 
-	$("#off").click(function()
+	$('#off').click(function()
 	{
 		$.each(userList, function (username)
 		{
 		username = this;
-		$("#results").append('<div id="' + username + '"><h3 id="name'+ username +'"></h3><p id="bio'+ username + '"></p><p id="stream'+ username+'"></p></div>');
+		$('#results').append('<div id="' + username + '"><h3 id="name'+ username +'"></h3><p id="bio'+ username + '"></p><p id="stream'+ username+'"></p></div>');
 
 		addUrl (username);
 		getDisplayName (username);
@@ -152,20 +135,17 @@ $("#results").append(
 		});
 	});
 
-	$("#all").click(function()
+	$('#all').click(function()
 	{
 		$.each(userList, function (username)
-	{
+		{
 		username = this;
-$("#results").append(
-	'<div id="' + username + '"><h3 id="name'+ username +'"></h3><p id="bio'+ username + '"></p><p id="stream'+ username+'"></p></div>'
-);
+$('#results').append('<div id="' + username + '"><h3 id="name'+ username +'"></h3><p id="bio'+ username + '"></p><p id="stream'+ username+'"></p></div>');
 		addUrl (username);
 		getDisplayName (username);
 		getStreamInfo (username);
 		$('.online').show();
 		$('.offline').show();
-
-	});
+		});
 	});
 });
